@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 django = "*"
 pillow = "*"
+django-filter = "*"
+crispy-bootstrap5 = "*"
 
 [dev-packages]
 

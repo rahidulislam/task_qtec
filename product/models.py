@@ -1,10 +1,11 @@
 from django.db import models
 from django.conf import settings
+from task_qtec.base import BaseModel
 # Create your models here.
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=255)
+class Category(BaseModel):
+    name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     parent = models.ForeignKey(
         'self', on_delete=models.SET_NULL, blank=True, null=True, related_name='children')
@@ -16,10 +17,20 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class Brand(BaseModel):
+    name=models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    class Meta:
+        ordering = ['name']
+        verbose_name_plural = 'brands'
 
-class Product(models.Model):
+    def __str__(self):
+        return self.name
+class Product(BaseModel):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name='products')
+    brand = models.ForeignKey(
+            Brand, on_delete=models.CASCADE, related_name='products')
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     description = models.TextField(blank=True)
@@ -31,9 +42,16 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_image_url(self):
+        try:
+            url = self.image.url
+        except Exception:
+            url = ''
+        return url
 
 
-class Order(models.Model):
+class Order(BaseModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, related_name='order')
     created = models.DateTimeField(auto_now_add=True)
@@ -51,7 +69,7 @@ class Order(models.Model):
         return f'Order {self.id}'
 
 
-class OrderItem(models.Model):
+class OrderItem(BaseModel):
     order = models.ForeignKey(
         Order, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -62,7 +80,7 @@ class OrderItem(models.Model):
         return str(self.id)
 
 
-class Address(models.Model):
+class Address(BaseModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     street_address = models.CharField(max_length=255)
