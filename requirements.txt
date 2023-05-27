@@ -1,8 +1,0 @@
--i https://pypi.org/simple
-asgiref==3.7.1 ; python_version >= '3.7'
-crispy-bootstrap5==0.7
-django==4.2.1
-django-crispy-forms==2.0 ; python_version >= '3.7'
-django-filter==23.2
-pillow==9.5.0
-sqlparse==0.4.4 ; python_version >= '3.5'
