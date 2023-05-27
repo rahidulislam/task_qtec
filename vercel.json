@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "task_qtec/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "task_qtec/wsgi.py"
+      }
+    ]
+}
