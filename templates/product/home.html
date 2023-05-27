@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="p-5 text-center bg-light">
+  <h1 class="mb-3">Welcome to Qtec Shop</h1>
+  <h4 class="mb-4">...and it's awesome!</h4>
+  <a class="btn btn-primary btn-lg" href="https://mdbootstrap.com/learn/mdb-foundations/basics/introduction/"
+    role="button">Go to Shop</a>
+</div>
+
+<div class="container">
+  <div class="row">
+      
+      <form method="GET">
+          {{ form|crispy }}
+          <button type="submit" class="btn btn-primary">Filter</button>
+      </form>
+  </div>
+  <div class="row">
+{% for product in products %}
+    <!-- First column -->
+    <div class="col-md">
+
+      <!-- Card -->
+      <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+          <img src={{ product.get_image_url }} class="img-fluid" />
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <p class="card-text">{{product.description}}</p>
+          <p class="card-text">{{product.price|floatformat:2}}Tk.</p>
+          <a href="#!" class="btn btn-primary">Details</a>
+        </div>
+      </div>
+      <!-- Card -->
+
+    </div>
+    <!-- First column -->
+
+{% endfor %}
+  </div>
+</div>
+{% endblock content %}
