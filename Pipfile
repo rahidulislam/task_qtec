@@ -9,6 +9,7 @@ pillow = "*"
 django-filter = "*"
 crispy-bootstrap5 = "*"
 python-decouple = "*"
+psycopg = "*"
 
 [dev-packages]
 

@@ -5,4 +5,7 @@ django==4.2.1
 django-crispy-forms==2.0 ; python_version >= '3.7'
 django-filter==23.2
 pillow==9.5.0
+psycopg==3.1.9
+python-decouple==3.8
 sqlparse==0.4.4 ; python_version >= '3.5'
+typing-extensions==4.6.2 ; python_version >= '3.7'
