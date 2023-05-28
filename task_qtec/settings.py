@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-sd)ndw+na21tb72sd2s0iw3!etj4qwdn#m8a2^(=sr)lkl^4=e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
+ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1','.now.sh']
 
 
 # Application definition
@@ -87,11 +87,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'URL': config('POSTGRES_URL'),
-        'NAME': config('POSTGRES_DATABASE'),
-        'USER': config('POSTGRES_USER'),
+        'NAME': config('PGNAME'),
+        'USER': config('PGUSER'),
         'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': config('POSTGRES_HOST'),
-        'PORT': '5432',
+        'HOST': config('PGHOST'),
+        'PORT': config('PGPORT'),
     }
 }
 
